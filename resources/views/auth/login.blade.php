@@ -40,12 +40,18 @@
                                             @csrf
                                             <div class="form-group mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email">
+                                                <input class="form-control @error('email') is-invalid @enderror" id="email" name="email" type="email" placeholder="Enter your email">
+                                                @error('email')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                             </div>
                 
                                             <div class="form-group mb-3">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password">
+                                                <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Enter your password">
+                                                @error('password')
+                                                    <div class="invalid-feedback">{{$message}}</div>
+                                                @enderror
                                             </div>
                 
                                             <div class="form-group d-flex mb-3">
@@ -83,7 +89,6 @@
                     <div class="col-xl-7">
                         <div class="account-page-bg p-md-5 p-4">
                             <div class="text-center">
-                                <h3 class="text-dark mb-3 pera-title">Quick, Effective, and Productive With Tapeli Admin Dashboard</h3>
                                 <div class="auth-image">
                                     <img src="{{asset('backend/assets/images/authentication.svg')}}" class="mx-auto img-fluid"  alt="images">
                                 </div>
