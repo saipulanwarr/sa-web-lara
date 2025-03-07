@@ -3,7 +3,7 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Admin Login</title>
+        <title>Verification Code</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
         <meta name="author" content="Zoyothemes"/>
@@ -36,40 +36,35 @@
                                     </div>
     
                                     <div class="pt-0">
-                                        <form method="POST" action="{{ route('admin.login') }}" class="my-4">
+                                        @if(session('status'))
+                                            <div class="alert alert-success">
+                                                {{session('status')}}
+                                            </div>
+                                        @endif
+
+                                        @if($errors->any())
+                                            <div class="alert alert-danger mt-3">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        <li>{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        <form method="POST" action="{{ route('custom.verification.verify') }}" class="my-4">
                                             @csrf
                                             <div class="form-group mb-3">
-                                                <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control @error('email') is-invalid @enderror" id="email" name="email" type="email" placeholder="Enter your email">
-                                                @error('email')
+                                                <label for="emailaddress" class="form-label">Verification Code</label>
+                                                <input class="form-control @error('code') is-invalid @enderror" id="code" name="code" type="text" placeholder="Enter your code">
+                                                @error('code')
                                                     <div class="invalid-feedback">{{$message}}</div>
                                                 @enderror
-                                            </div>
-                
-                                            <div class="form-group mb-3">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Enter your password">
-                                                @error('password')
-                                                    <div class="invalid-feedback">{{$message}}</div>
-                                                @enderror
-                                            </div>
-                
-                                            <div class="form-group d-flex mb-3">
-                                                <div class="col-sm-6">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                                        <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6 text-end">
-                                                    <a class='text-muted fs-14' href="{{ route('password.request') }}">Forgot password?</a>                             
-                                                </div>
                                             </div>
                                             
                                             <div class="form-group mb-0 row">
                                                 <div class="col-12">
                                                     <div class="d-grid">
-                                                        <button class="btn btn-primary" type="submit"> Log In </button>
+                                                        <button class="btn btn-primary" type="submit"> Verify </button>
                                                     </div>
                                                 </div>
                                             </div>
