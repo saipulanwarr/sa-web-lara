@@ -40,7 +40,7 @@
                                             @csrf
                                             <div class="form-group mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" id="email" name="email" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                                <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email">
                                             </div>
                 
                                             <div class="form-group mb-3">
