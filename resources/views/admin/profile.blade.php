@@ -95,34 +95,41 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card-body mb-0">
-                                                <div class="form-group mb-3 row">
-                                                    <label class="form-label">Old Password</label>
-                                                    <div class="col-lg-12 col-xl-12">
-                                                        <input class="form-control" type="password" placeholder="Old Password">
+                                            <form method="POST" action="{{route('user.password.update')}}">
+                                                @csrf
+                                                <div class="card-body mb-0">
+                                                    <div class="form-group mb-3 row">
+                                                        <label class="form-label">Old Password</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <input class="form-control @error('old_password') is-invalid @enderror" name="old_password" type="password" placeholder="Old Password" id="old_password">
+                                                            @error('old_password')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                    <label class="form-label">New Password</label>
-                                                    <div class="col-lg-12 col-xl-12">
-                                                        <input class="form-control" type="password" placeholder="New Password">
+                                                    <div class="form-group mb-3 row">
+                                                        <label class="form-label">New Password</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <input class="form-control @error('new_password') is-invalid @enderror" name="new_password" type="password" placeholder="New Password" id="new_password">
+                                                            @error('new_password')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                    <label class="form-label">Confirm Password</label>
-                                                    <div class="col-lg-12 col-xl-12">
-                                                        <input class="form-control" type="password" placeholder="Confirm Password">
+                                                    <div class="form-group mb-3 row">
+                                                        <label class="form-label">Confirm Password</label>
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <input class="form-control" type="password" placeholder="Confirm Password" name="new_password_confirmation" id="new_password_confirmation">
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group row">
-                                                    <div class="col-lg-12 col-xl-12">
-                                                        <button type="submit" class="btn btn-primary">Change Password</button>
-                                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-12 col-xl-12">
+                                                            <button type="submit" class="btn btn-primary">Change Password</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-
-                                            </div><!--end card-body-->
+                                                </div><!--end card-body-->
+                                            </form>
                                         </div>
                                     </div>
 

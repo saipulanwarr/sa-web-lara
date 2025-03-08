@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
@@ -54,9 +55,40 @@ class ProfileController extends Controller
      }
 
      private function deleteOldImage(string $oldPhotoPath): void{
-      $fullPath = public_path('upload/user_images/'.$oldPhotoPath);
-      if(file_exists($fullPath)){
-         unlink($fullPath);
-      }
+         $fullPath = public_path('upload/user_images/'.$oldPhotoPath);
+         if(file_exists($fullPath)){
+            unlink($fullPath);
+         }
+     }
+
+     public function PasswordUpdate(Request $request){
+         $user = Auth::user();
+
+         $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed'
+         ]);
+
+         if(!Hash::check($request->old_password, $user->password)){
+            $notification = array(
+               'message' => 'Old password does not match',
+               'alert-type' => 'error'
+            );
+
+            return back()->with($notification);
+         }
+
+         User::whereId($user->id)->update([
+            'password' => Hash::make($request->new_password)
+         ]);
+
+         Auth::logout();
+
+         $notification = array(
+            'message' => 'Password changed successfully',
+            'alert-type' => 'success'
+         );
+
+         return redirect()->route('login')->with($notification);
      }
 }
