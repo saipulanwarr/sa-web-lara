@@ -40,7 +40,7 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td><img src="{{ asset('upload/service/'.$item->image) }}" style="width: 70px; height: 40px;" /></td>
-                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->service_name}}</td>
                                         <td>{{ Str::limit($item->service_short, 30)}}</td>
                                         <td>{{$item->icon}}</td>
                                         <td>

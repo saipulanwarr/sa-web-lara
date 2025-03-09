@@ -39,10 +39,10 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ServiceController::class)->group(function(){
         Route::get("/all/service", "AllService")->name('all.service');
-        Route::get("/add/slider", "AddSlider")->name('add.slider');
-        Route::post("/store/slider", "StoreSlider")->name('store.slider');
-        Route::get("/edit/slider/{id}", "EditSlider")->name('edit.slider');
-        Route::post("/update/slider", "UpdateSlider")->name('update.slider');
-        Route::get("/delete/slider/{id}", "DeleteSlider")->name('delete.slider');
+        Route::get("/add/service", "AddService")->name('add.service');
+        Route::post("/service/service", "StoreService")->name('store.service');
+        Route::get("/edit/service/{id}", "EditService")->name('edit.service');
+        Route::post("/update/service", "UpdateService")->name('update.service');
+        Route::get("/delete/service/{id}", "DeleteService")->name('delete.service');
     });
 });
