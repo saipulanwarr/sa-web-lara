@@ -39,7 +39,7 @@
                                 @foreach($slider as $key => $item)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td><img src="{{ asset($item->image) }}" style="width: 70px; height: 40px;" /></td>
+                                        <td><img src="{{ asset('upload/slider/'.$item->image) }}" style="width: 70px; height: 40px;" /></td>
                                         <td>{{$item->heading}}</td>
                                         <td>{{ Str::limit($item->description, 20)}}</td>
                                         <td>{{$item->link}}</td>
