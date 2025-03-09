@@ -48,4 +48,54 @@ class SliderController extends Controller
 
         return redirect()->route('all.slider')->with($notification);
     }
+
+    public function EditSlider($id){
+        $slider = Slider::find($id);
+
+        return view('backend.slider.edit_slider', compact('slider'));
+    }
+
+    public function updateSlider(Request $request){
+        $slider_id = $request->id;
+        $slider = Slider::find($slider_id);
+
+        if($request->file('image')){
+            $oldPhotoPath = $slider->image;
+            $image = $request->file('image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/slider'), $filename);
+
+            $slider->update([
+                'heading' => $request->heading,
+                'description' => $request->description,
+                'link' => $request->link,
+                'image' => $filename,
+            ]);
+
+            if($oldPhotoPath && $oldPhotoPath !== $filename){
+                $this->deleteOldImage($oldPhotoPath);
+             }
+
+            $notification = array(
+                'message' => 'Slider Updated with Image Successfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.slider')->with($notification);
+
+        }else{
+            $slider->update([
+                'heading' => $request->heading,
+                'description' => $request->description,
+                'link' => $request->link,
+            ]);
+
+            $notification = array(
+                'message' => 'Slider Updated without Image Successfully',
+                'alert-type' => 'success'
+            );
+    
+            return redirect()->route('all.slider')->with($notification);
+        }
+    }
 }
