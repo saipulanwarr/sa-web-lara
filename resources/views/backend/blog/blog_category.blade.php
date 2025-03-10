@@ -42,8 +42,8 @@
                                         <td>{{$item->blog_category}}</td>
                                         <td>{{$item->slug}}</td>
                                         <td>
-                                            <a href="{{route('edit.testimonial', $item->id)}}" class="btn btn-success btn-sm">Edit</a>
-                                            <a href="{{route('delete.testimonial', $item->id)}}" class="btn btn-danger btn-sm" id="delete">Delete</a>
+                                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#category" id="{{$item->id}}" onclick="categoryEdit(this.id)">Edit</button>
+                                            <a href="{{route('delete.blog.category', $item->id)}}" class="btn btn-danger btn-sm" id="delete">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -80,5 +80,44 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="category" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="standard-modalLabel">Add Blog Category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="myForm" class="row g-3" method="POST" action="{{route('blog.category.update')}}">
+                @csrf
+                <input type="hidden" id="cat_id" name="cat_id" />
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        <label for="validationDefault01" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" name="blog_category" id="cat">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function categoryEdit(id){
+        $.ajax({
+            type: 'GET',
+            url: '/edit/blog/category/'+id,
+            dataType: 'json',
+
+            success: function(data){
+                $('#cat').val(data.blog_category);
+                $('#cat_id').val(data.id);
+            }
+        })
+    }
+</script>
 
 @endsection
