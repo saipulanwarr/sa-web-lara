@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogCategory;
+use App\Models\BlogPost;
 
 class BlogController extends Controller
 {
@@ -60,5 +61,11 @@ class BlogController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function AllBlogPost(){
+        $blogpost = BlogPost::latest()->get();
+
+        return view('backend.blog.all_blog_post', compact('blogpost'));
     }
 }

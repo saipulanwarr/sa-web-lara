@@ -108,8 +108,22 @@
                             <li>
                                 <a href="{{route('blog.category')}}" class="tp-link">Blog Category</a>
                             </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#BlogPostError" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Blog Post </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="BlogPostError">
+                        <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('add.testimonial')}}" class="tp-link">Add Testimonial</a>
+                                <a href="{{route('all.blog.post')}}" class="tp-link">All Blog Post</a>
+                            </li>
+                            <li>
+                                <a href="{{route('blog.category')}}" class="tp-link">Add Blog Post</a>
                             </li>
                         </ul>
                     </div>
