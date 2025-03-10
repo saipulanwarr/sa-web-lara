@@ -80,6 +80,23 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#testimonialError" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Manage Testimonial </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="testimonialError">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('all.testimonial')}}" class="tp-link">All Testimonial</a>
+                            </li>
+                            <li>
+                                <a href="{{route('add.testimonial')}}" class="tp-link">Add Testimonial</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="menu-title mt-2">General</li>
                 <li>
                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
