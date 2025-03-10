@@ -63,6 +63,20 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a href="#gatewayError" data-bs-toggle="collapse">
+                        <i data-feather="alert-octagon"></i>
+                        <span> Manage Gateway </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="gatewayError">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{route('gateway.one')}}" class="tp-link">Gateway One</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="menu-title mt-2">General</li>
                 <li>
                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
