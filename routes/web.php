@@ -50,5 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(GatewayOneController::class)->group(function(){
         Route::get("/gateway/one", "GateWayOne")->name('gateway.one');
         Route::post("/update/gateway/one", "UpdateGateWayOne")->name('update.gateway.one');
+        Route::get("/gateway/two", "GateWayTwo")->name('gateway.two');
+        Route::post("/update/gateway/two", "UpdateGateWayTwo")->name('update.gateway.two');
     });
 });

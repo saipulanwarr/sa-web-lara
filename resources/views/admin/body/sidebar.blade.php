@@ -74,6 +74,9 @@
                             <li>
                                 <a href="{{route('gateway.one')}}" class="tp-link">Gateway One</a>
                             </li>
+                            <li>
+                                <a href="{{route('gateway.two')}}" class="tp-link">Gateway Two</a>
+                            </li>
                         </ul>
                     </div>
                 </li>
