@@ -8,6 +8,12 @@ use App\Models\SiteSetting;
 
 class SettingController extends Controller
 {
+    public function ApiSiteSetting(){
+        $site = SiteSetting::latest()->get();
+
+        return $site;
+    }
+    
     public function SiteSetting(){
         $site = SiteSetting::find(1);
 
