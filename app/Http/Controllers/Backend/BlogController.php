@@ -68,4 +68,41 @@ class BlogController extends Controller
 
         return view('backend.blog.all_blog_post', compact('blogpost'));
     }
+
+    public function AddBlogPost(){
+        $blogcat = BlogCategory::latest()->get();
+
+        return view('backend.blog.add_blog_post', compact('blogcat'));
+    }
+
+    private function deleteOldImage(string $oldPhotoPath): void{
+        $fullPath = public_path('upload/blog/'.$oldPhotoPath);
+        if(file_exists($fullPath)){
+           unlink($fullPath);
+        }
+    }
+
+    public function StoreBlogPost(Request $request){
+
+        if($request->file('image')){
+            $image = $request->file('image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/blog'), $filename);
+
+            BlogPost::create([
+                'post_title' => $request->post_title,
+                'post_slug' => strtolower(str_replace(' ', '-', $request->post_title)),
+                'blogcat_id' => $request->blogcat_id,
+                'long_descp' => $request->long_descp,
+                'image' => $filename,
+            ]);
+        }
+
+        $notification = array(
+            'message' => 'Blog Post Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.blog.post')->with($notification);
+    }
 }

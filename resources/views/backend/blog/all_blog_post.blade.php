@@ -13,7 +13,7 @@
 
             <div class="text-end">
                 <ol class="breadcrumb m-0 py-0">
-                    <a href="{{route('add.service')}}" class="btn btn-primary">Add Blog Post</a>
+                    <a href="{{route('add.blog.post')}}" class="btn btn-primary">Add Blog Post</a>
                 </ol>
             </div>
         </div>
@@ -39,10 +39,10 @@
                                 @foreach($blogpost as $key => $item)
                                     <tr>
                                         <td>{{$key+1}}</td>
-                                        <td>{{$item->blogcat_id}}</td>
+                                        <td>{{$item['blog']['blog_category']}}</td>
                                         <td><img src="{{ asset('upload/blog/'.$item->image) }}" style="width: 70px; height: 40px;" /></td>
                                         <td>{{$item->post_title}}</td>
-                                        <td>{{ Str::limit($item->long_dscp, 30)}}</td>
+                                        <td>{{ Str::limit(strip_tags($item->long_descp), 30)}}</td>
                                         <td>
                                             <a href="{{route('edit.service', $item->id)}}" class="btn btn-success btn-sm">Edit</a>
                                             <a href="{{route('delete.service', $item->id)}}" class="btn btn-danger btn-sm" id="delete">Delete</a>
