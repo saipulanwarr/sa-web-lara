@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\GatewayOneController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\TestimonialController;
 
 Route::get('/user', function (Request $request) {
@@ -17,3 +18,6 @@ Route::get('/service/{slug}', [ServiceController::class, 'getServiceBySlug']);
 Route::get('/gatewayone', [GatewayOneController::class, 'ApiGatewayOne']);
 Route::get('/gatewaytwo', [GatewayOneController::class, 'ApiGatewayTwo']);
 Route::get('/testimonial', [TestimonialController::class, 'ApiGetTestimonial']);
+Route::get('/blogcat', [BlogController::class, 'ApiBlogCat']);
+Route::get('/blog', [BlogController::class, 'ApiAllBlog']);
+Route::get('/blog/{slug}', [BlogController::class, 'ApiAllBlogSlug']);

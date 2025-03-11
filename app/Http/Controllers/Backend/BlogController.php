@@ -9,6 +9,52 @@ use App\Models\BlogPost;
 
 class BlogController extends Controller
 {
+    public function ApiBlogCat(){
+        $blogcat = BlogCategory::latest()->get();
+
+        return $blogcat;
+    }
+
+    public function ApiAllBlog(){
+        $blogpost = BlogPost::with('blog')->latest()->get();
+
+        $response = $blogpost->map(function($post){
+            return[
+                'id' => $post->id,
+                'post_title' => $post->post_title,
+                'post_slug' => $post->post_slug,
+                'image' => $post->image,
+                'long_descp' => $post->long_descp,
+                'created_at' => $post->created_at,
+                'updated_at' => $post->updated_at,
+                'category_name' => $post->blog ? $post->blog->blog_category : null,
+            ];
+        });
+
+        return response()->json($response);
+    }
+
+    public function ApiAllBlogSlug($slug){
+        $blogpost = BlogPost::with('blog')->where('post_slug', $slug)->first();
+
+        if(!$blogpost){
+            return response()->json(['error' => 'Blog Post not found', 404]);
+        }
+
+        $response = [
+            'id' => $blogpost->id,
+            'post_title' => $blogpost->post_title,
+            'post_slug' => $blogpost->post_slug,
+            'image' => $blogpost->image,
+            'long_descp' => $blogpost->long_descp,
+            'created_at' => $blogpost->created_at,
+            'updated_at' => $blogpost->updated_at,
+            'category_name' => $blogpost->blog ? $blogpost->blog->blog_category : null,
+        ];
+
+        return response()->json($response);
+    }
+
     public function BlogCategory(){
         $category = BlogCategory::latest()->get();
 
