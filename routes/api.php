@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\GatewayOneController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\AboutPageController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,3 +24,4 @@ Route::get('/blogcat', [BlogController::class, 'ApiBlogCat']);
 Route::get('/blog', [BlogController::class, 'ApiAllBlog']);
 Route::get('/blog/{slug}', [BlogController::class, 'ApiAllBlogSlug']);
 Route::get('/sitesetting', [SettingController::class, 'ApiSiteSetting']);
+Route::get('/about', [AboutPageController::class, 'ApiAboutPage']);

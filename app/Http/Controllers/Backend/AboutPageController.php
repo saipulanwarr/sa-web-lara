@@ -9,6 +9,12 @@ use App\Models\ContactPage;
 
 class AboutPageController extends Controller
 {
+    public function ApiAboutPage(){
+        $about = AboutPage::find(1);
+
+        return $about;
+    }
+    
     public function AboutPage(){
         $about = AboutPage::find(1);
 
