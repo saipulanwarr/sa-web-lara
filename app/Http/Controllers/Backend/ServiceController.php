@@ -9,6 +9,22 @@ use App\Models\Service;
 class ServiceController extends Controller
 {
     //
+    public function AllServices(){
+        $services = Service::latest()->get();
+
+        return $services;
+    }
+
+    public function getServiceBySlug($slug){
+        $service = Service::where('slug', $slug)->first();
+
+        if(!$service){
+            return response()->json(['error' => 'Service not found'], 404);
+        }
+
+        return response()->json($service);
+    }
+
     public function AllService(){
         $service = Service::latest()->get();
 
