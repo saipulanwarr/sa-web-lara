@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AboutPage;
+use App\Models\ContactPage;
 
 class AboutPageController extends Controller
 {
@@ -71,5 +72,11 @@ class AboutPageController extends Controller
     
             return redirect()->back()->with($notification);
         }
+    }
+
+    public function ContactMessage(){
+        $contact = ContactPage::latest()->get();
+
+        return view('backend.contact.all_contact', compact('contact'));
     }
 }
