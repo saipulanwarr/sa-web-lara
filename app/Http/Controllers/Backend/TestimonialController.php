@@ -8,6 +8,13 @@ use App\Models\Testimonial;
 
 class TestimonialController extends Controller
 {
+
+    public function ApiGetTestimonial(){
+        $testimonial = Testimonial::latest()->get();
+
+        return $testimonial;
+    }
+
     public function AllTestimonial(){
         $testi = Testimonial::latest()->get();
 
