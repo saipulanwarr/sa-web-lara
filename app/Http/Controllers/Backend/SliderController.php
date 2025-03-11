@@ -10,6 +10,13 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class SliderController extends Controller
 {
+
+    public function ApiAllSlider(){
+        $slider = Slider::latest()->get();
+
+        return $slider;
+    }
+
     public function AllSlider(){
         $slider = Slider::latest()->get();
         return view('backend.slider.all_slider', compact('slider'));
