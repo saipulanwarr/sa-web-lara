@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Backend\GatewayOneController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -12,3 +13,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/sliders', [SliderController::class, 'ApiAllSlider']);
 Route::get('/services', [ServiceController::class, 'AllServices']);
 Route::get('/service/{slug}', [ServiceController::class, 'getServiceBySlug']);
+Route::get('/gatewayone', [GatewayOneController::class, 'ApiGatewayOne']);
+Route::get('/gatewaytwo', [GatewayOneController::class, 'ApiGatewayTwo']);

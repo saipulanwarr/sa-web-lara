@@ -9,6 +9,18 @@ use App\Models\Gatewaytwo;
 
 class GatewayOneController extends Controller
 {
+    public function ApiGatewayOne(){
+        $gatone = Gatewayone::find(1);
+
+        return $gatone;
+    }
+
+    public function ApiGatewayTwo(){
+        $gattwo = Gatewayone::find(1);
+
+        return $gattwo;
+    }
+
     public function GateWayOne(){
         $gateone = Gatewayone::find(1);
 
