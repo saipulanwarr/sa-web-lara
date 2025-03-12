@@ -23,5 +23,7 @@ Route::get('/testimonial', [TestimonialController::class, 'ApiGetTestimonial']);
 Route::get('/blogcat', [BlogController::class, 'ApiBlogCat']);
 Route::get('/blog', [BlogController::class, 'ApiAllBlog']);
 Route::get('/blog/{slug}', [BlogController::class, 'ApiAllBlogSlug']);
+Route::get('/blog/{slug}', [BlogController::class, 'ApiAllBlogSlug']);
+Route::get('/category/{category_id}/blogs', [BlogController::class, 'getBlogsByCategory']);
 Route::get('/sitesetting', [SettingController::class, 'ApiSiteSetting']);
 Route::get('/about', [AboutPageController::class, 'ApiAboutPage']);

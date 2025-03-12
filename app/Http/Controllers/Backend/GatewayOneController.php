@@ -16,7 +16,7 @@ class GatewayOneController extends Controller
     }
 
     public function ApiGatewayTwo(){
-        $gattwo = Gatewayone::find(1);
+        $gattwo = Gatewaytwo::find(1);
 
         return $gattwo;
     }
